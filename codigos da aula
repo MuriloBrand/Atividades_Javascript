@@ -1,0 +1,80 @@
+function soma(numero1, numero2, numero3 = 0) {
+   subtracao() //função callback
+   return numero1 + numero2 + numero3;
+   console.log("cheguei aqui") // não funciona pois está depois do return
+}
+
+const soma = function (numero1, numero2) {
+    //mesma coisa de cima
+}
+
+const potencia = (numero) => {
+    let numeroDaPotencia = 2
+    return numero ** numeroDaPotencia
+}
+ //mesmo que
+const potencia1 = numero =>  numero ** 2
+
+console.log(potencia1(4))
+let potenciaDeOito = potencia1(8)
+console.log(potenciaDeOito)
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ARRAYS XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+let idades2 = Array(100)
+let idades = [12, 18, 34, 55, 25]
+
+idades.pop() /* retira o ultimo item do array e retorna */
+idades.shift() /* retira o primeiro valor da lista */
+idades.splice(1, 0, 47,27, 84) 
+/* o primeiro valor é o index de onde vai ser retirado da lista,
+o segundo valor são quantos itens vão ser retirados
+a partir do terceiro valor, são opcionais e indica os valores a serem colocados no 
+lugar dos que sairam */
+
+idades.push(6) /* coloca um valor no final do array */
+idades.unshift(2) /* coloca um valor no inicio do array */
+console.log(idades)
+
+for(let i = 0; i< idades.length; i++) {
+    console.log(idades[i])
+}
+
+for(let idade of idades) {
+    console(idade)
+}
+
+let string = "Fernanda"
+let texto = ""
+
+for(let char of string) {
+    texto += char + "-"
+}
+
+
+ let cores = ["azul", "rosa", "preto", "vermelho", "branco", "verde"]
+
+
+
+
+        while(true) {
+            let cor = prompt("Digite uma cor").toLowerCase()
+            let encontrou = false
+
+            for(let item of cores) {
+                if(item === cor) {
+                    encontrou = true
+                } 
+            }
+
+            if(encontrou) {
+                alert("Encontrou")
+                break;
+            }
+
+            alert("Não encontrou")
+        }
+
+console.log(texto)

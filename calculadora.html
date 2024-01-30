@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="numero1"/>
+    <input type="number" id="numero2"/>
+
+    <button onclick="soma()">
+        Somar
+    </button>
+    <button onclick="subtracao()">
+        Subtração
+    </button>
+    <button onclick="zerar()">
+        Zerar
+    </button>
+    <p id="texto">0</p>
+    <script>
+        let res = document.getElementById("texto")
+
+        function soma() {
+            let numero1 = Number(document.getElementById("numero1").value)
+            let numero2 = Number(document.getElementById("numero2").value)
+            res.innerHTML = numero1 + numero2
+        }
+        function subtracao() {
+            let numero1 = Number(document.getElementById("numero1").value)
+            let numero2 = Number(document.getElementById("numero2").value)
+            res.innerHTML = numero1 - numero2
+        }
+        function zerar() {
+            let numero1 = Number(document.getElementById("numero1").value)
+            let numero2 = Number(document.getElementById("numero2").value)
+            res.innerHTML = 0
+        }
+    </script>
+</body>
+</html>

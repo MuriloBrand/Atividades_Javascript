@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encontrar Máximo e Mínimo</title>
+</head>
+<body>
+    <h1>Encontrar Máximo e Mínimo</h1>
+    <p>Insira números inteiros separados por vírgula:</p>
+    <input type="text" id="inputNumbers">
+    <button onclick="findMinMax()">Encontrar Máximo e Mínimo</button>
+    <p>Máximo: <span id="maxValue"></span></p>
+    <p>Mínimo: <span id="minValue"></span></p>
+
+    <script>
+        function findMinMax() {
+            const input = document.getElementById("inputNumbers").value;
+            const numbers = input.split(",").map(Number);
+
+            if (numbers.length === 0) {
+                alert("Por favor, insira pelo menos um número.");
+                return;
+            }
+
+            const maxValue = Math.max(...numbers);
+            const minValue = Math.min(...numbers);
+
+            document.getElementById("maxValue").textContent = maxValue;
+            document.getElementById("minValue").textContent = minValue;
+        }
+    </script>
+</body>
+</html>

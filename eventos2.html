@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            width: 200px;
+        }
+
+        input {
+            border: none;
+            outline: none;
+            border-bottom: 1px solid black ;
+        }
+    </style>
+</head>
+<body>
+    <label>Entrada:
+        <input type="number" />
+    </label>
+    <label>Refeição:
+        <input type="number" />
+    </label>
+    <label>Sobremesa:
+        <input type="number" />
+    </label>
+    <label>Bebida:
+        <input type="number" />
+    </label>
+
+    <button onclick="fecharConta()">
+        Fechar conta
+    </button>
+
+    <p>Total do consumo: R$ <span id="consumo"></span></p>
+    <p>Gorjeta (10%): R$ <span id="gorjeta"></span></p>
+    <p>Valor a pagar: R$ <span id="total"></span></p>
+
+    <script>
+        let consumo = document.querySelector("#consumo")
+        let gorjeta = document.getElementById("gorjeta")
+        let total = document.getElementById("total")
+        let inputs = document.querySelectorAll("input")
+
+        for(let input of inputs) {
+            input.addEventListener('input', calculoConta)
+        }
+
+        function calculoConta() {
+            let valorConsumo = 0
+
+            for(let input of inputs) {
+                if(input.value != "") {
+                    valorConsumo += parseFloat(input.value)
+                }
+            }
+
+            consumo.innerHTML = valorConsumo.toFixed(2)
+            gorjeta.innerHTML = (valorConsumo * 0.1).toFixed(2)
+            total.innerHTML = (valorConsumo * 0.1 + valorConsumo).toFixed(2)
+        }
+
+        function fecharConta() {
+            for(let input of inputs) {
+                input.removeEventListener('input', calculoConta)
+            }
+        }
+    </script>
+</body>
+</html>

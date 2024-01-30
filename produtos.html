@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 2rem;
+      background-color: rgb(80, 162, 255);
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .produtos {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .produto {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: rgb(252, 90, 31);
+      font-size: 1.25rem;
+      gap: 1rem;
+      border-radius: 5px;
+    }
+
+    .filtros {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .filtros div span {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    
+    p {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    
+    .filtros button {
+      padding: .5rem;
+      border-radius: 5px;
+      width: 50%;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="filtros">
+    <div>
+      <span>Filtre por:</span>
+      <label>
+        <input type="checkbox" value="perecivel" name="category">
+        Perecivel
+      </label>
+      <label>
+        <input type="checkbox" value="nao_perecivel" name="category">
+        Não perecivel
+      </label>
+    </div>
+    <p>Total das compras: R$<span id="price">0.00</span></p>
+    <button onclick="aplicarDesconto()">Aplicar desconto</button>
+  </div>
+  <div class="produtos"></div>
+
+  <script>
+    let containerProdutos = document.querySelector(".produtos")
+    let valorTotal = document.querySelector("#price")
+    let inputsFiltros = document.querySelectorAll("input[name=category]")
+
+    inputsFiltros.forEach(input => input.addEventListener("input", filtrarProdutos))
+
+    let produtos = [
+      {name: "Feijão", category: "nao_perecivel", price: 7.99},
+      {name: "Arroz", category: "nao_perecivel", price: 5.49},
+      {name: "Peito de frango", category: "perecivel", price: 17.99},
+      {name: "Maçã", category: "perecivel", price: 0.80},
+      {name: "Batata", category: "perecivel", price: 0.99},
+    ]
+
+    function mostrarProdutos(array) {
+      containerProdutos.innerHTML = ""
+
+      array.forEach(produto => {
+        containerProdutos.innerHTML += `
+        <div class="produto">
+          <input type="checkbox" name="produtos" value="${produto.price}" oninput="somarValorTotal()"/>
+          <label>Nome: ${produto.name}, Preço: R$ ${produto.price}</label>
+        </div>`
+      })
+    }
+
+    function somarValorTotal() {
+      let inputsChecados = document.querySelectorAll("input[name=produtos]:checked")
+      let somaTotal = [...inputsChecados].reduce((acc, input) => acc + Number(input.value), 0)
+      
+      console.log(somaTotal)
+      valorTotal.innerHTML = somaTotal.toFixed(2)
+    }
+
+    function filtrarProdutos() {
+      let filtros = []
+      let produtosFiltrados = []
+      let inputsDeFiltro = document.querySelectorAll("input[name=category]:checked")
+
+      inputsDeFiltro.forEach(input => filtros.push(input.value))
+
+      if(filtros.includes("perecivel")) {
+        let pereciveis = produtos.filter(produto => produto.category === 'perecivel')
+
+        produtosFiltrados.push(...pereciveis)
+
+        //mesmo que => pereciveis.forEach(perecivel => produtos.push(perecivel))
+      }
+
+      if(filtros.includes("nao_perecivel")) {
+        let naoPereciveis = produtos.filter(produto => produto.category === 'nao_perecivel')
+
+        produtosFiltrados.push(...naoPereciveis)
+      }
+
+      mostrarProdutos(filtros.length == 0 ? produtos : produtosFiltrados)
+    }
+
+    function aplicarDesconto() {
+      let desconto = Number(prompt("Digite a % de desconto")) / 100
+      let valor = Number(valorTotal.innerHTML)
+
+      valorTotal.innerHTML = (valor - valor * desconto).toFixed(2)
+      /* produtos.forEach(produto => produto.price -= produto.price * desconto )
+
+      mostrarProdutos(produtos) */
+    }
+
+    mostrarProdutos(produtos)
+  </script>
+</body>
+</html>

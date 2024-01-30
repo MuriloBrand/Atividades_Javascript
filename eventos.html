@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid black;
+            width: 300px;
+            height: 150px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+        }
+
+        .cor1 {
+            background-color: red;
+        }
+        .cor2 {
+            background-color:rgb(30, 0, 255);
+        }
+        .cor3 {
+            background-color: rgb(0, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Este retângulo muda de cor
+    </div>
+   <!-- data-attributes são atributos que você pode criar, dando o nome e o valor que quiser
+    e tendo acesso a eles pelo javascript por meio do dataset do elemento -->
+    <button data-color="red" data-keyframe="none" class="btn1">Cor 1</button>
+    <button data-color="blue" class="btn2">Cor 2</button>
+    <button data-color="rgb(0, 255, 0)" class="btn3">Cor 3</button>
+
+    <script>
+        //capta o primeiro elemento que corresponda ao seletor especificado
+        let div = document.querySelector('div') 
+
+        //capta todos os elementos que correspondam ao seletor especificado, como uma lista de tags
+        let buttons = document.querySelectorAll('button') 
+        console.log(buttons)
+
+        //rodo um loop pela lista de tags de button
+        for(let button of buttons) {
+            //A mesma coisa de adicionar um onclick em cada um dos botões e associar a uma função
+            /* associo uma função ao eventlistener que tem acesso ao evento 
+            (que contém o elemento que o disparou chamado de target) */
+            button.addEventListener('click', changeColor)
+        }
+
+        function changeColor(event) {
+            //div.classList.add(event.target.classList)
+            //div.style.backgroundColor = event.target.dataset['color']
+
+            div.style.backgroundColor = event.target.dataset.color
+		event.target.removeEventListener('click', changeColor) //remove o 'ouvinte' de evento de click e sua função associada
+        }
+    </script>
+</body>
+</html>

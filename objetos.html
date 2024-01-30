@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let usuario1 = ["Murilo", 20, "murilo0808@gmail.com"]
+        usuario1[2]
+
+        let usuario = {
+            nome: "Murilo",
+            idade: 20,
+            email: "murilo0808@gmail.com",
+            ativo: true
+            endereco: {
+                rua: "Limoeiro",
+                numero: 5,
+                bairro: "limoeiro"
+            },
+            telefone: ["71991890596", "7199990000"],
+            anoDeNascimento: () => new Date().getFullYear - usuario.idade
+        }
+
+        console.log(usuario.nome)
+    </script>
+</body>
+</html>
